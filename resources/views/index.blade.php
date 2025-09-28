@@ -68,6 +68,14 @@
             </li>
           </ul>
           <div class="user_option">
+            @if(Auth::check())
+            <a href="{{route('dashboard')}}">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span>
+                Dashboard
+              </span>
+            </a>
+            @else
             <a href="{{route('login')}}">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>
@@ -80,6 +88,7 @@
                 Sign Up
               </span>
             </a>
+            @endif
             <a href="">
               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             </a>
@@ -355,9 +364,6 @@
   </section>
 
   <!-- end shop section -->
-
-
-   
 
   <!-- info section -->
 
