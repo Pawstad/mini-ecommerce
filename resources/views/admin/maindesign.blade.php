@@ -3,7 +3,7 @@
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin </title>
+    <title>Admin Dashboard </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -106,9 +106,16 @@
         <ul class="list-unstyled">
                 <li class="active"><a href="index"> <i class="icon-home"></i>Home </a></li>
 
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
-                  <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                    <li><a href="#">Page</a></li>
+                <li><a href="#Category" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Category </a>
+                  <ul id="Category" class="collapse list-unstyled ">
+                    <li><a href="#">Add Categories</a></li>
+                    <li><a href="#">View Categories</a></li>
+                    <li><a href="#">Delete Categories</a></li>
+                  </ul>
+                </li>
+                <li><a href="#Product" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Product</a>
+                  <ul id="Product" class="collapse list-unstyled ">
+                    <li><a href="#">Add Product</a></li>
                     <li><a href="#">Page</a></li>
                     <li><a href="#">Page</a></li>
                   </ul>
