@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('/tesadmin', [AdminController::class, 'tesadmin'])->name('admin.tes');
+    Route::get('/vieworder', [AdminController::class, 'viewOrder'])->name('admin.vieworder');
+    Route::post('/change_status/{id}', [AdminController::class, 'changeStatus'])->name('admin.change_status');
 });
 
 require __DIR__.'/auth.php';
