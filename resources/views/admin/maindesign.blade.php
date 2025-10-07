@@ -108,14 +108,14 @@
 
                 <li><a href="#Category" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Category </a>
                   <ul id="Category" class="collapse list-unstyled ">
-                    <li><a href="#">Add Categories</a></li>
+                    <li><a href="{{ route('admin.addcategory') }}">Add Categories</a></li>
                     <li><a href="#">View Categories</a></li>
                     <li><a href="#">Delete Categories</a></li>
                   </ul>
                 </li>
                 <li><a href="#Product" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Product</a>
                   <ul id="Product" class="collapse list-unstyled ">
-                    <li><a href="#">Add Product</a></li>
+                    <li><a href="{{ route('admin.addproduct') }}">Add Product</a></li>
                     <li><a href="#">Page</a></li>
                     <li><a href="{{route('admin.vieworder') }}">View Order</a></li>
                   </ul>
@@ -131,8 +131,11 @@
           </div>
         </div>
         <section class="no-padding-top no-padding-bottom">
+        <!-- All Section-->
+          @yield('add_category')
+          
 
-
+          @yield('add_product')
 
 
 

@@ -19,7 +19,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth','admin'])->group(function () {
-    Route::get('/tesadmin', [AdminController::class, 'tesadmin'])->name('admin.tes');
+    // Route::get('/tesadmin', [AdminController::class, 'tesadmin'])->name('admin.tes');
+    Route::get('/add_category', [AdminController::class, 'addCategory'])->name('admin.addcategory');
+    Route::post('/add_category', [AdminController::class, 'postAddCategory'])->name('admin.postaddcategory');
+    Route::get('/add_product', [AdminController::class, 'addProduct'])->name('admin.addproduct');
+    Route::post('/add_product', [AdminController::class, 'postAddProduct'])->name('admin.postaddproduct');
     Route::get('/vieworder', [AdminController::class, 'viewOrder'])->name('admin.vieworder');
     Route::post('/change_status/{id}', [AdminController::class, 'changeStatus'])->name('admin.change_status');
 });
