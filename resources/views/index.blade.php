@@ -26,12 +26,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
-            <li class="nav-item active"><a class="nav-link" href="index.html">Beranda</a></li>
-            <li class="nav-item"><a class="nav-link" href="shop.html">Katalog Buku</a></li>
-            <li class="nav-item"><a class="nav-link" href="why.html">Kenapa Kami</a></li>
-            <li class="nav-item"><a class="nav-link" href="testimonial.html">Testimoni</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+            <li class="nav-item active"><a class="nav-link" href="{{ route('index') }}">Beranda</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('catalog.index') }}">Katalog Buku</a></li>
           </ul>
+
           <div class="user_option">
             @if(Auth::check())
             <a href="{{route('dashboard')}}"><i class="fa fa-user"></i> Dashboard</a>
@@ -61,7 +59,7 @@
                     <div class="detail-box">
                       <h1>Selamat Datang di <br>Toko Buku Swasembada</h1>
                       <p>Kami menyediakan berbagai macam buku bacaan, novel, komik, hingga referensi kuliah dengan harga terjangkau.</p>
-                      <a href="katalog">Lihat Katalog</a>
+                      <a href="{{ route('catalog.index') }}">Lihat Katalog</a>
                     </div>
                   </div>
                   <div class="col-md-5">
@@ -86,6 +84,28 @@
         <h2>Buku Terbaru</h2>
       </div>
       <div class="row">
+        @if(isset($latestProducts) && $latestProducts->count())
+            @foreach($latestProducts as $product)
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="box">
+                <a href="#">
+                  <div class="img-box">
+                    @if($product->product_image)
+                    <img src="{{ asset('uploads/products/' . $product->product_image) }}" alt="{{ $product->product_name }}">
+                    @else
+                    <img src="front_end/images/b1.jpg" alt="no image">
+                    @endif
+                  </div>
+                  <div class="detail-box">
+                    <h6>{{ $product->product_name }}</h6>
+                    <h6>Harga <span>Rp{{ number_format($product->product_price, 0, ',', '.') }}</span></h6>
+                  </div>
+                  <div class="new"><span>Baru</span></div>
+                </a>
+              </div>
+            </div>
+            @endforeach
+        @else
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
             <a href="">
@@ -134,8 +154,9 @@
             </a>
           </div>
         </div>
+        @endif
       </div>
-      <div class="btn-box"><a href="shop.html">Lihat Semua Buku</a></div>
+  <div class="btn-box"><a href="{{ route('catalog.index') }}">Lihat Semua Buku</a></div>
     </div>
   </section>
   <!-- end shop section -->

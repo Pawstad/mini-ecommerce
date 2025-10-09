@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('receiver_address');
             $table->string('receiver_phone');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            // product_id stored as unsignedBigInteger to avoid FK ordering issues in migrations
+            $table->unsignedBigInteger('product_id');
+            $table->index('product_id');
             $table->timestamps();
             $table->string('status', 255)->default('pending');
         });

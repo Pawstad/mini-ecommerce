@@ -5,12 +5,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 
+use App\Models\Product;
+
 Route::get('/', function () {
-    return view('index');
+    // fetch 4 latest products to show on the homepage
+    $latestProducts = Product::orderBy('created_at', 'desc')->take(4)->get();
+    return view('index', compact('latestProducts'));
 })->name('index');
 
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+// Public catalog route (search + category filter)
+use App\Http\Controllers\CatalogController;
+Route::get('/katalog', [CatalogController::class, 'index'])->name('catalog.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

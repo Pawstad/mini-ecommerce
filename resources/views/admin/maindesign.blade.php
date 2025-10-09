@@ -41,7 +41,7 @@
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="index" class="navbar-brand">
+            <!-- Navbar Header--><a href="{{route('dashboard')}}" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Dark</strong><strong>Admin</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">D</strong><strong>A</strong></div></a>
             <!-- Sidebar Toggle Btn-->
@@ -74,6 +74,11 @@
               </div>
             </div>
             
+  
+            <div class="list-inline-item">
+              <a href="{{ route('index') }}" class="btn btn-sm btn-primary" style="margin-right:10px;">Kembali ke Beranda</a>
+            </div>
+
             <!-- Log out               -->
             <div class="list-inline-item logout">
                 <!-- Authentication -->
@@ -104,7 +109,7 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-                <li class="active"><a href="index"> <i class="icon-home"></i>Home </a></li>
+                <li class="active"><a href="{{ route('dashboard') }}"> <i class="icon-home"></i>Home </a></li>
 
                 <li><a href="#Category" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Category </a>
                   <ul id="Category" class="collapse list-unstyled ">
@@ -126,8 +131,12 @@
       <!-- Sidebar Navigation end-->
       <div class="page-content">
         <div class="page-header">
-          <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Dashboard</h2>
+            <div class="container-fluid">
+            @if(Auth::check() && Auth::user()->role === 'admin')
+              <h2 class="h5 no-margin-bottom">Dashboard Admin</h2>
+            @else
+              <h2 class="h5 no-margin-bottom">Dashboard</h2>
+            @endif
           </div>
         </div>
         <section class="no-padding-top no-padding-bottom">
@@ -138,12 +147,6 @@
           @yield('add_product')
 
 
-
-
-
-
-
-        
           @yield('view_orders')
         </section>
         
