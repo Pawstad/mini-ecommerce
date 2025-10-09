@@ -1,47 +1,101 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="/front_end_login_regis/images/icons/favicon.ico"/>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="/front_end_login_regis/vendor/bootstrap/css/bootstrap.min.css">
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="/front_end_login_regis/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+	<!-- Animate -->
+	<link rel="stylesheet" type="text/css" href="/front_end_login_regis/vendor/animate/animate.css">
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+	<!-- Hamburgers -->
+	<link rel="stylesheet" type="text/css" href="/front_end_login_regis/vendor/css-hamburgers/hamburgers.min.css">
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+	<!-- Select2 -->
+	<link rel="stylesheet" type="text/css" href="/front_end_login_regis/vendor/select2/select2.min.css">
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="/front_end_login_regis/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/front_end_login_regis/css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="/front_end_login_regis/images/img-01.png" alt="IMG">
+				</div>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+					@csrf
+					
+					<span class="login100-form-title">
+						Member Login
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+						<input class="input100" type="email" name="email" placeholder="Email" required autofocus>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="{{ route('password.request') }}">
+							Username / Password?
+						</a>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="{{ route('register') }}">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Scripts -->
+	<script src="/front_end_login_regis/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/front_end_login_regis/vendor/bootstrap/js/popper.js"></script>
+	<script src="/front_end_login_regis/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/front_end_login_regis/vendor/select2/select2.min.js"></script>
+	<script src="/front_end_login_regis/vendor/tilt/tilt.jquery.min.js"></script>
+	<script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="/front_end_login_regis/js/main.js"></script>
+
+</body>
+</html>
