@@ -12,6 +12,8 @@ class AdminController extends Controller
     //     return view('admin.tes');
     // }
 
+    // ======= category ========
+
     public function addCategory(){
         return view('admin.addcategory');
     }
@@ -21,12 +23,20 @@ class AdminController extends Controller
         $category->category_name=$request->category_name;
         $category->save();
         return redirect()->back()->with('category_added', 'Category added successfully.');
+
     }
-    
+
+    public function viewCategory(){
+        $categories = Category::all();
+        return view('admin.viewcategory', compact('categories'));
+    }
+
+    // ======= product ========
     public function addProduct(){
         $categories = Category::all();
         return view('admin.addproduct', compact('categories'));
     }
+
     public function postAddProduct(Request $request){
         $product = new Product();
         $product->product_name=$request->product_name;
@@ -44,6 +54,18 @@ class AdminController extends Controller
 
         $product->save();
         return redirect()->back()->with('product_added', 'Product added successfully.');
+    }
+
+    public function deleteProduct() {
+        $products = Product::all();
+        return view('admin.deleteproduct', compact('products'));
+    }
+
+    public function destroyProduct($id) {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Product deleted successfully.');
     }
 
 
