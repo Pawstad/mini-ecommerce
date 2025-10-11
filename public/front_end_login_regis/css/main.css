@@ -460,3 +460,41 @@ iframe {
     opacity: 1;
   }
 }
+
+/* Laravel validation error styles */
+.error-text {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    display: block;
+}
+
+/* Keep input boxes from resizing */
+.wrap-input100 {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+/* Highlight invalid inputs */
+.input100.is-invalid {
+    border: 1px solid #e74c3c !important;
+}
+
+/* Reserve a bit of space to prevent layout jumping */
+.error-text {
+    min-height: 18px;
+}
+
+.invalid-feedback {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    display: block;
+    text-align: left;
+}
+input.is-invalid {
+    border-color: #e74c3c !important;
+}
+
