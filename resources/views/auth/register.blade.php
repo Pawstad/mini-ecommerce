@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('main_design')
+<base href="/public">
+@section('register')
 <head>
     <title>Register V1</title>
     <meta charset="UTF-8">
@@ -7,9 +8,6 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/front_end_login_regis/images/icons/favicon.ico"/>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/front_end_login_regis/vendor/bootstrap/css/bootstrap.min.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="/front_end_login_regis/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -33,7 +31,7 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <div class="login100-pic js-tilt" data-tilt>
-                <img src="/front_end_login_regis/images/img-01.png" alt="Registration illustration">
+                <img src="/front_end_login_regis/images/8832880.png" alt="Registration illustration">
             </div>
 
             <form class="login100-form validate-form" method="POST" action="{{ route('register') }}">
@@ -134,4 +132,5 @@
 <script src="/front_end_login_regis/js/main.js"></script>
 
 </body>
-</html>
+
+@endsection

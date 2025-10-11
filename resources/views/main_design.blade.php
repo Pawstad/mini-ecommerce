@@ -18,7 +18,7 @@
     <!-- header -->
     <header class="header_section">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route('index') }}">
           <span>Toko Buku Swasembada</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -26,16 +26,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
-            <li class="nav-item active"><a class="nav-link" href="{{ route('index') }}">Beranda</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('catalog.index') }}">Katalog Buku</a></li>
+            <li class="nav-item {{ request()->routeIs('index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('index') }}">Beranda</a></li>
+            <li class="nav-item {{ request()->routeIs('catalog.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('catalog.index') }}">Katalog Buku</a></li>
           </ul>
 
           <div class="user_option">
             @if(Auth::check())
-            <a href="{{route('dashboard')}}"><i class="fa fa-user"></i> Dashboard</a>
+            <a href="{{route('dashboard')}}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><i class="fa fa-user"></i> Dashboard</a>
             @else
-            <a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a>
-            <a href="{{route('register')}}"><i class="fa fa-user"></i> Daftar</a>
+            <a href="{{route('login')}}" class="{{ request()->routeIs('login') ? 'active' : '' }}"><i class="fa fa-user"></i> Login</a>
+            <a href="{{route('register')}}" class="{{ request()->routeIs('register') ? 'active' : '' }}"><i class="fa fa-user"></i> Daftar</a>
             @endif
             <a href=""><i class="fa fa-shopping-bag"></i></a>
             <form class="form-inline">
@@ -81,6 +81,9 @@
   <section class="shop_section layout_padding">
     @yield('index')
     @yield('product_details')
+    @yield('katalog')
+    @yield('login')
+    @yield('register')
   </section>
   <!-- end shop section -->
 
