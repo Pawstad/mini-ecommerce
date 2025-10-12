@@ -8,25 +8,25 @@
     @endif
     <table class="table table-bordered">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Actions</th>
+            <tr  style="background-color: #f2f2f2;">
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">ID</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Image</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Name</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Category</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Qty</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Price</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($products as $product)
-            <tr>
-                <td>{{ $product->id }}</td>
-                <td><img src="{{ asset('uploads/products/' . $product->product_image) }}" style="width:80px;" alt=""></td>
-                <td>{{ $product->product_name }}</td>
-                <td>{{ $product->category->category_name ?? '-' }}</td>
-                <td>{{ $product->product_quantity }}</td>
-                <td>Rp{{ number_format($product->product_price,0,',','.') }}</td>
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 12px;">{{ $product->id }}</td>
+                <td style="padding: 12px;"><img src="{{ asset('uploads/products/' . $product->product_image) }}" style="width:80px;" alt=""></td>
+                <td style="padding: 12px;">{{ $product->product_name }}</td>
+                <td style="padding: 12px;">{{ $product->category->category_name ?? '-' }}</td>
+                <td style="padding: 12px;">{{ $product->product_quantity }}</td>
+                <td style="padding: 12px;">Rp{{ number_format($product->product_price,0,',','.') }}</td>
                 <td>
                     <a href="{{ route('admin.editproduct', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
                     <form action="{{ route('admin.destroyproduct', $product->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete this product?');">

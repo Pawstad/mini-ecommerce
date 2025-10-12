@@ -9,21 +9,21 @@
         @endif
         <table class="table table-bordered">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Category Name</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Actions</th>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">ID</th>
+                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Category Name</th>
+                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Created At</th>
+                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Updated At</th>
+                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($categories as $category)
-                <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->category_name }}</td>
-                    <td>{{ $category->created_at }}</td>
-                    <td>{{ $category->updated_at }}</td>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 12px;">{{ $category->id }}</td>
+                    <td style="padding: 12px;">{{ $category->category_name }}</td>
+                    <td style="padding: 12px;">{{ $category->created_at }}</td>
+                    <td style="padding: 12px;">{{ $category->updated_at }}</td>
                     <td>
                         <a href="{{ route('admin.editcategory', $category->id) }}" class="btn btn-sm btn-primary">Edit</a>
                         <form action="{{ route('admin.destroycategory', $category->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this category?');">

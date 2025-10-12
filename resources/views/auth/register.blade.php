@@ -23,7 +23,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/front_end_login_regis/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/front_end_login_regis/css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('front_end_login_regis/css/main.css') }}">
 </head>
 
 <body>
@@ -132,5 +132,14 @@
 <script src="/front_end_login_regis/js/main.js"></script>
 
 </body>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @endsection
