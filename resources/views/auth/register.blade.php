@@ -1,5 +1,5 @@
 @extends('main_design')
-<base href="/public">
+
 @section('register')
 <head>
     <title>Register V1</title>

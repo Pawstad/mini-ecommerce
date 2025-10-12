@@ -1,5 +1,5 @@
 @extends('main_design')
-<base href="/public">
+
 @section('login')
 <head>
     <title>Login</title>
