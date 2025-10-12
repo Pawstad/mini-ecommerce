@@ -53,13 +53,24 @@
                 </div>
 
                 <div class="action_buttons">
-                  <button class="btn btn-add-to-cart" {{ $product->product_quantity == 0 ? 'disabled' : '' }}>
-                    <i class="fa fa-shopping-cart"></i> 
-                    {{ $product->product_quantity > 0 ? 'Tambah ke Keranjang' : 'Stok Habis' }}
-                  </button>
-                  <button class="btn btn-buy-now" {{ $product->product_quantity == 0 ? 'disabled' : '' }}>
-                    <i class="fa fa-bolt"></i> Beli Sekarang
-                  </button>
+                  <form method="POST" action="{{ route('cart.add') }}" style="display:inline-block; margin-right:8px;">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="quantity" class="form-quantity" value="1">
+                    <button type="submit" class="btn btn-add-to-cart" {{ $product->product_quantity == 0 ? 'disabled' : '' }}>
+                      <i class="fa fa-shopping-cart"></i> 
+                      {{ $product->product_quantity > 0 ? 'Tambah ke Keranjang' : 'Stok Habis' }}
+                    </button>
+                  </form>
+
+                  <form method="POST" action="{{ route('checkout.buy_now') }}" style="display:inline-block;">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="quantity" class="form-quantity-buy" value="1">
+                    <button type="submit" class="btn btn-buy-now" {{ $product->product_quantity == 0 ? 'disabled' : '' }}>
+                      <i class="fa fa-bolt"></i> Beli Sekarang
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -80,6 +91,14 @@
       const plusBtn = document.querySelector('.quantity-plus');
 
       if (quantityInput && minusBtn && plusBtn) {
+
+    // copy quantity to hidden inputs before submit
+    document.addEventListener('submit', function(e) {
+      const qty = document.querySelector('.quantity-input')?.value || 1;
+      document.querySelectorAll('.form-quantity, .form-quantity-buy').forEach(function(el) {
+        el.value = qty;
+      });
+    });
         minusBtn.addEventListener('click', function() {
           let currentValue = parseInt(quantityInput.value);
           if (currentValue > 1) {

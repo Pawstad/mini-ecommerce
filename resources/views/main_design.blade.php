@@ -31,22 +31,37 @@
           </ul>
 
           <div class="user_option">
-            @if(Auth::check())
+            @if(Auth::check() && Auth::user()->role === 'admin')
             <a href="{{route('dashboard')}}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><i class="fa fa-user"></i> Dashboard</a>
-            @else
+            @elseif(!Auth::check())
             <a href="{{route('login')}}" class="{{ request()->routeIs('login') ? 'active' : '' }}"><i class="fa fa-user"></i> Login</a>
             <a href="{{route('register')}}" class="{{ request()->routeIs('register') ? 'active' : '' }}"><i class="fa fa-user"></i> Daftar</a>
+            @else
+            <!-- Log out               -->
+            <div class="list-inline-item logout">
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
+            </div>
             @endif
-            <a href=""><i class="fa fa-shopping-bag"></i></a>
-            <form class="form-inline">
-              <button class="btn nav_search-btn" type="submit"><i class="fa fa-search"></i></button>
-            </form>
+            <a href="{{ route('cart.index') }}"><i class="fa fa-shopping-bag"></i></a>
+            
           </div>
+          
         </div>
       </nav>
     </header>
     <!-- end header -->
 
+    {{-- Show hero slider except on product details page --}}
+    @unless(request()->routeIs(['product_details', 'cart.index', 'checkout.form']))
     <!-- slider -->
     <section class="slider_section">
       <div class="slider_container">
@@ -75,6 +90,7 @@
       </div>
     </section>
     <!-- end slider -->
+    @endunless
   </div>
 
   <!-- shop section -->
@@ -84,6 +100,9 @@
     @yield('katalog')
     @yield('login')
     @yield('register')
+    @yield('cart')
+    @yield('checkout_form')
+    @yield('checkout_success')
   </section>
   <!-- end shop section -->
 
@@ -137,5 +156,6 @@
   <script src="front_end/js/bootstrap.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="front_end/js/custom.js"></script>
+  @yield('scripts')
 </body>
 </html>

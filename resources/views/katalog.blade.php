@@ -33,13 +33,13 @@
             <li class="nav-item active"><a class="nav-link" href="{{ route('catalog.index') }}">Katalog Buku</a></li>
             </ul>
           <div class="user_option">
-            @if(Auth::check())
-            <a href="{{route('dashboard')}}"><i class="fa fa-user"></i> Dashboard</a>
-            @else
-            <a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a>
-            <a href="{{route('register')}}"><i class="fa fa-user"></i> Daftar</a>
+            @if(Auth::check() && Auth::user()->role === 'admin')
+            <a href="{{route('dashboard')}}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><i class="fa fa-user"></i> Dashboard</a>
+            @elseif(!Auth::check())
+            <a href="{{route('login')}}" class="{{ request()->routeIs('login') ? 'active' : '' }}"><i class="fa fa-user"></i> Login</a>
+            <a href="{{route('register')}}" class="{{ request()->routeIs('register') ? 'active' : '' }}"><i class="fa fa-user"></i> Daftar</a>
             @endif
-            <a href=""><i class="fa fa-shopping-bag"></i></a>
+            <a href="{{ route('cart.index') }}"><i class="fa fa-shopping-bag"></i></a>
             <form class="form-inline">
               <button class="btn nav_search-btn" type="submit"><i class="fa fa-search"></i></button>
             </form>

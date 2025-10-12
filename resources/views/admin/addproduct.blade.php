@@ -17,6 +17,22 @@
                 <label for="product_name">Product Name</label>
                 <input type="text" id="product_name" name="product_name" class="form-control" placeholder="Enter Product Name">
             </div>
+            <div class="form-group mb-3">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" class="form-control" placeholder="Author name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="publisher">Publisher</label>
+                <input type="text" id="publisher" name="publisher" class="form-control" placeholder="Publisher">
+            </div>
+            <div class="form-group mb-3">
+                <label for="isbn">ISBN</label>
+                <input type="text" id="isbn" name="isbn" class="form-control" placeholder="ISBN">
+            </div>
+            <div class="form-group mb-3">
+                <label for="pages">Pages</label>
+                <input type="number" id="pages" name="pages" class="form-control" placeholder="Number of pages">
+            </div>
             
             <div class="form-group mb-3">
                 <label for="product_description">Product Description</label>

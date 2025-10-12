@@ -13,6 +13,7 @@
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Product</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Price</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Product Image</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Payment Proof</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Status</th>
             </tr>
         </thead>
@@ -22,11 +23,22 @@
                 <td style="padding: 12px;">{{ $order->user->name }}</td>
                 <td style="padding: 12px;">{{ $order->receiver_address }}</td>
                 <td style="padding: 12px;">{{ $order->receiver_phone }}</td>
-                <td style="padding: 12px;">{{ $order->product->product_title }}</td>
-                <td style="padding: 12px;">{{ $order->product->product_price }}</td>
-                <td style="padding: 12px;">
-                    <img style="width: 150px;" src="{{ asset('products/' .$order->product->product_image) }}" >
-                </td>
+                                <td style="padding: 12px;">{{ $order->product->product_name ?? 'Produk tidak ditemukan' }}</td>
+                                <td style="padding: 12px;">Rp{{ number_format($order->product->product_price ?? 0,0,',','.') }}</td>
+                                <td style="padding: 12px;">
+                                        @if(!empty($order->product->product_image))
+                                            <img style="width: 150px;" src="{{ asset('uploads/products/' . $order->product->product_image) }}" >
+                                        @else
+                                            -
+                                        @endif
+                                </td>
+                                <td style="padding: 12px;">
+                                    @if(!empty($order->payment_proof))
+                                        <a href="{{ route('admin.order_proof', $order->id) }}" target="_blank">Lihat Bukti</a>
+                                    @else
+                                        -
+                                    @endif
+                                </td>
                 <td style="padding: 12px;">
                     <form action="{{route('admin.change_status', $order->id)}}" method="post">
                         @csrf
