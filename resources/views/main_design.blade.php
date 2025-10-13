@@ -61,7 +61,7 @@
     <!-- end header -->
 
     {{-- Show hero slider except on product details page --}}
-    @unless(request()->routeIs(['product_details', 'cart.index', 'checkout.form']))
+    @unless(request()->routeIs(['product_details', 'cart.index', 'checkout.form', 'catalog.index']))
     <!-- slider -->
     <section class="slider_section">
       <div class="slider_container">

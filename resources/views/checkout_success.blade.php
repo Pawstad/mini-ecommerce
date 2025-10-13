@@ -55,19 +55,3 @@
   </div>
 </div>
 @endsection
-@extends('main_design')
-@section('checkout_success')
-<div class="container">
-  <h2>Checkout Berhasil</h2>
-  <p>Terima kasih, pesanan Anda telah dibuat.</p>
-
-  <h4>Rincian Pesanan</h4>
-  <ul>
-    @foreach($orders as $order)
-      <li>{{ $order->product->product_name ?? 'Produk tidak ditemukan' }} — Jumlah: {{ $order->quantity }} — Total: Rp{{ number_format($order->total,0,',','.') }}</li>
-    @endforeach
-  </ul>
-
-  <a href="{{ route('index') }}" class="btn btn-secondary">Kembali ke Beranda</a>
-</div>
-@endsection

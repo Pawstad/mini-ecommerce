@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Models\Product;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CartController;
 
-Route::get('/product_details/{id}', [UserController::class, 'productDetails'])
-->name('product_details')
-->middleware('auth');
+Route::get('/product_details/{id}', [UserController::class, 'productDetails'])->name('product_details');
 
 
 Route::get('/', function () {
@@ -20,34 +20,28 @@ Route::get('/', function () {
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Public catalog route (search + category filter)
-use App\Http\Controllers\CatalogController;
 Route::get('/katalog', [CatalogController::class, 'index'])->name('catalog.index');
 
-use App\Http\Controllers\CartController;
 
-// Cart & checkout routes used by views
-Route::post('/cart', [CartController::class, 'add'])->name('cart');
-// alias used in some views
-Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
-Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
-Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::middleware(['auth','verified'])->group(function () {
+    // Cart & checkout routes used by views
+    Route::post('/cart', [CartController::class, 'add'])->name('cart');
+    // alias used in some views
+    Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
-Route::get('/checkout', [CartController::class, 'showCheckoutForm'])->name('checkout.form');
-Route::post('/checkout', [CartController::class, 'processCheckout'])->name('checkout');
-// quick-buy: add item to cart then show checkout form (used by "Beli Sekarang")
-Route::post('/checkout/buy-now', [CartController::class, 'buyNow'])->name('checkout.buy_now');
+    Route::get('/checkout', [CartController::class, 'showCheckoutForm'])->name('checkout.form');
+    Route::post('/checkout', [CartController::class, 'processCheckout'])->name('checkout');
+    // quick-buy: add item to cart then show checkout form (used by "Beli Sekarang")
+    Route::post('/checkout/buy-now', [CartController::class, 'buyNow'])->name('checkout.buy_now');
 
-// public proof viewing (buyers can view uploaded proof if they have the link)
-Route::get('/order/{id}/proof-public', [\App\Http\Controllers\CartController::class, 'showPaymentProofPublic'])->name('order.proof_public');
+    // public proof viewing (buyers can view uploaded proof if they have the link)
+    Route::get('/order/{id}/proof-public', [\App\Http\Controllers\CartController::class, 'showPaymentProofPublic'])->name('order.proof_public');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 Route::middleware(['auth','admin'])->group(function () {
     // Route::get('/tesadmin', [AdminController::class, 'tesadmin'])->name('admin.tes');
     Route::get('/add_category', [AdminController::class, 'addCategory'])->name('admin.addcategory');

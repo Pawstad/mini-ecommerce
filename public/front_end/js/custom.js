@@ -27,3 +27,35 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+// Quantity selector functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const quantityInput = document.querySelector('.quantity-input');
+    const minusBtn = document.querySelector('.quantity-minus');
+    const plusBtn = document.querySelector('.quantity-plus');
+
+    if (quantityInput && minusBtn && plusBtn) {
+
+// copy quantity to hidden inputs before submit
+document.addEventListener('submit', function(e) {
+    const qty = document.querySelector('.quantity-input')?.value || 1;
+    document.querySelectorAll('.form-quantity, .form-quantity-buy').forEach(function(el) {
+    el.value = qty;
+    });
+});
+    minusBtn.addEventListener('click', function() {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+        }
+    });
+
+    plusBtn.addEventListener('click', function() {
+        let currentValue = parseInt(quantityInput.value);
+        let maxStock = parseInt(quantityInput.getAttribute('max'));
+        if (currentValue < maxStock) {
+        quantityInput.value = currentValue + 1;
+        }
+    });
+    }
+});
