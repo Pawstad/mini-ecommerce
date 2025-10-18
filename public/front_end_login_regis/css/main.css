@@ -168,9 +168,30 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  
-   background-image: url("/front_end_login_regis/images/bookstore.jpg");
-   
+  position: relative;
+  background-image: url("/front_end_login_regis/images/bookstore.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container-login100::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/front_end_login_regis/images/bookstore.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.8);
+  -webkit-filter: blur(8px) brightness(0.8);
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  z-index: 0;
 }
 
 .wrap-login100 {
@@ -178,7 +199,6 @@ iframe {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -187,6 +207,11 @@ iframe {
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 177px 130px 33px 95px;
+  
+  /* TAMBAHKAN INI */
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 /*------------------------------------------------------------------
@@ -494,5 +519,53 @@ iframe {
 }
 input.is-invalid {
     border-color: #e74c3c !important;
+}
+
+/*------------------------------------------------------------------
+[ Back Button ]*/
+.back-link {
+    font-family: Poppins-Regular;
+    font-size: 14px;
+    color: #666666;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    color: #57b846;
+    text-decoration: none;
+}
+
+.back-link:hover i {
+    transform: translateX(-3px);
+}
+
+.back-link i {
+    transition: transform 0.3s ease;
+    margin-right: 8px;
+}
+
+.back-button-container {
+    position: absolute;
+    top: 30px;
+    left: 45px;
+    z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .back-button-container {
+        top: 20px;
+        left: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .back-button-container {
+        top: 15px;
+        left: 15px;
+    }
 }
 

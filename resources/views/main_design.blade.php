@@ -125,7 +125,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="info_form">
-              <h5>Newsletter</h5>
+              <h6>Newsletter</h6>
               <form action="#"><input type="email" placeholder="Masukkan email"><button>Subscribe</button></form>
             </div>
           </div>
