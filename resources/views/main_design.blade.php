@@ -11,42 +11,6 @@
   <link rel="stylesheet" type="text/css" href="front_end/css/bootstrap.css" />
   <link href="front_end/css/style.css" rel="stylesheet" />
   <link href="front_end/css/responsive.css" rel="stylesheet" />
-  <style>
-    /* Navbar hover effect */
-    .custom_nav-container .navbar-nav .nav-link{
-      transition: color .15s ease, background-color .15s ease, transform .12s ease, box-shadow .12s ease;
-      border-radius: 6px;
-      padding: .45rem .7rem;
-      color: inherit;
-    }
-    .custom_nav-container .navbar-nav .nav-link:hover,
-    .custom_nav-container .navbar-nav .nav-item.active .nav-link{
-      background-color: rgba(0,0,0,0.08);
-      color: #111;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      text-decoration: none;
-    }
-
-    .user_option a,
-    .user_option .logout a,
-    .user_option .logout x-dropdown-link{
-      transition: transform .12s ease, color .12s ease;
-    }
-    .user_option a:hover,
-    .user_option .logout:hover,
-    .user_option .logout a:hover,
-    .user_option .logout x-dropdown-link:hover{
-      transform: translateY(-2px);
-      color: #111;
-    }
-
-    @media (max-width: 767px){
-      .custom_nav-container .navbar-nav .nav-link{
-        padding: .4rem .5rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
