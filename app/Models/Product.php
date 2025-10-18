@@ -6,26 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    // Allow mass assignment for common fields
+    // Kolom yang bisa diisi mass assignment
     protected $fillable = [
         'product_name',
+        'author',
+        'publisher',
+        'isbn',
+        'pages',
         'product_description',
         'product_quantity',
         'product_price',
         'product_image',
-        'product_category',
     ];
 
-    // Casts
+    // Casting tipe data
     protected $casts = [
         'product_price' => 'decimal:2',
         'product_quantity' => 'integer',
-        'product_category' => 'integer',
     ];
 
-    // Relationship: product belongs to a category (product_category stores category id)
-    public function category()
+    // Relasi many-to-many ke kategori
+    public function categories()
     {
-        return $this->belongsTo(Category::class, 'product_category');
+        return $this->belongsToMany(Category::class, 'category_product');
     }
 }

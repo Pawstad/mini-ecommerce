@@ -13,6 +13,7 @@ class Category extends Model
     // Relationship: category has many products
     public function products()
     {
-        return $this->hasMany(Product::class, 'product_category');
+        return $this->belongsToMany(Product::class, 'category_product');
     }
+
 }

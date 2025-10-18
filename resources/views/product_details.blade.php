@@ -24,6 +24,18 @@
                 <p class="product_publisher"><strong>Penerbit:</strong> {{ $product->publisher ?? 'Tidak tersedia' }}</p>
                 <p class="product_isbn"><strong>ISBN:</strong> {{ $product->isbn ?? 'Tidak tersedia' }}</p>
                 <p class="product_pages"><strong>Halaman:</strong> {{ $product->pages ?? 'Tidak tersedia' }}</p>
+
+                <!-- ✅ Tambahan kategori -->
+                <p class="product_categories">
+                  <strong>Kategori:</strong>
+                  @if($product->categories && $product->categories->count() > 0)
+                      @foreach($product->categories as $category)
+                          <span class="badge bg-secondary">{{ $category->category_name }}</span>
+                      @endforeach
+                  @else
+                      <span class="text-muted">Tidak ada kategori</span>
+                  @endif
+                </p>
               </div>
 
               <div class="product_price">
@@ -83,5 +95,4 @@
   <script src="{{ asset('front_end/js/bootstrap.js') }}"></script>
   <script src="{{ asset('front_end/js/custom.js') }}"></script>
 
-  
 @endsection
