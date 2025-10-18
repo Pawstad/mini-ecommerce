@@ -20,9 +20,9 @@ class CatalogController extends Controller
         $category = $request->query('category');
 
         $categories = Category::all();
-
         $productsQuery = Product::query();
 
+        // Filter pencarian
         if ($q) {
             $productsQuery->where(function($w) use ($q) {
                 $w->where('product_name', 'like', "%{$q}%")
@@ -30,11 +30,17 @@ class CatalogController extends Controller
             });
         }
 
+        // Filter kategori lewat relasi pivot
         if ($category) {
-            $productsQuery->where('product_category', $category);
+            $productsQuery->whereHas('categories', function($query) use ($category) {
+                $query->where('categories.id', $category);
+            });
         }
 
-        $products = $productsQuery->orderBy('created_at', 'desc')->paginate(12)->withQueryString();
+        // Urutkan dan paginasi
+        $products = $productsQuery->orderBy('created_at', 'desc')
+                                  ->paginate(12)
+                                  ->withQueryString();
 
         return view('katalog', compact('products', 'categories', 'q', 'category'));
     }
