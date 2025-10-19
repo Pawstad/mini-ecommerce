@@ -6,43 +6,47 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Toko Buku Swasembada</title>
-  <link rel="shortcut icon" href="front_end/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('front_end/images/favicon.png') }}" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <link rel="stylesheet" type="text/css" href="front_end/css/bootstrap.css" />
-  <link href="front_end/css/style.css" rel="stylesheet" />
-  <link href="front_end/css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('front_end/css/bootstrap.css') }}" />
+  <link href="{{ asset('front_end/css/style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('front_end/css/responsive.css') }}" rel="stylesheet" />
+  <!-- Add this line for Font Awesome if you need it -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <style>
     /* Navbar hover effect */
-    .custom_nav-container .navbar-nav .nav-link{
+    .custom_nav-container .navbar-nav .nav-link {
       transition: color .15s ease, background-color .15s ease, transform .12s ease, box-shadow .12s ease;
       border-radius: 6px;
       padding: .45rem .7rem;
       color: inherit;
     }
+
     .custom_nav-container .navbar-nav .nav-link:hover,
-    .custom_nav-container .navbar-nav .nav-item.active .nav-link{
-      background-color: rgba(0,0,0,0.08);
+    .custom_nav-container .navbar-nav .nav-item.active .nav-link {
+      background-color: rgba(0, 0, 0, 0.08);
       color: #111;
       transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
       text-decoration: none;
     }
 
     .user_option a,
     .user_option .logout a,
-    .user_option .logout x-dropdown-link{
+    .user_option .logout x-dropdown-link {
       transition: transform .12s ease, color .12s ease;
     }
+
     .user_option a:hover,
     .user_option .logout:hover,
     .user_option .logout a:hover,
-    .user_option .logout x-dropdown-link:hover{
+    .user_option .logout x-dropdown-link:hover {
       transform: translateY(-2px);
       color: #111;
     }
 
-    @media (max-width: 767px){
-      .custom_nav-container .navbar-nav .nav-link{
+    @media (max-width: 767px) {
+      .custom_nav-container .navbar-nav .nav-link {
         padding: .4rem .5rem;
       }
     }
@@ -64,6 +68,7 @@
           <ul class="navbar-nav">
             <li class="nav-item {{ request()->routeIs('index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('index') }}">Beranda</a></li>
             <li class="nav-item {{ request()->routeIs('catalog.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('catalog.index') }}">Katalog Buku</a></li>
+            <li class="nav-item {{ request()->routeIs('order.history') ? 'active' : '' }}"><a class="nav-link" href="{{ route('order.history') }}">Riwayat Pesanan</a></li>
           </ul>
 
           <div class="user_option">
@@ -97,7 +102,7 @@
     <!-- end header -->
 
     {{-- Show hero slider except on product details page --}}
-    @unless(request()->routeIs(['product_details', 'cart.index', 'checkout.form', 'catalog.index']))
+    @unless(request()->routeIs(['product_details', 'cart.index', 'checkout.form', 'catalog.index', 'order.history']))
     <!-- slider -->
     <section class="slider_section">
       <div class="slider_container">
@@ -139,6 +144,7 @@
     @yield('cart')
     @yield('checkout_form')
     @yield('checkout_success')
+    @yield('order_history')
   </section>
   <!-- end shop section -->
 

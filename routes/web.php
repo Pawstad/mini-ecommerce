@@ -40,6 +40,8 @@ Route::middleware(['auth','verified'])->group(function () {
 
     // public proof viewing (buyers can view uploaded proof if they have the link)
     Route::get('/order/{id}/proof-public', [\App\Http\Controllers\CartController::class, 'showPaymentProofPublic'])->name('order.proof_public');
+    Route::get('/order/history', [CartController::class, 'orderHistory'])->name('order.history');
+    
 
 });
 Route::middleware(['auth','admin'])->group(function () {

@@ -240,4 +240,25 @@ class CartController extends Controller
         }
         return response()->file($path);
     }
+
+    public function orderHistory()
+    {
+        // Get authenticated user
+        $user = Auth::user();
+        
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Silakan login untuk melihat riwayat pesanan.');
+        }
+        
+        // Get user's orders grouped by order date
+        $orders = Order::where('user_id', $user->id)
+                      ->with('product') // eager load product relationship
+                      ->orderBy('created_at', 'desc')
+                      ->get()
+                      ->groupBy(function($date) {
+                          return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d'); // group by date
+                      });
+        
+        return view('order_history', compact('orders'));
+    }
 }
