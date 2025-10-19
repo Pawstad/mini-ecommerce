@@ -109,8 +109,6 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-                <li class="active"><a href="{{ route('dashboard') }}"> <i class="icon-home"></i>Home </a></li>
-
                 <li><a href="#Category" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Category </a>
                   <ul id="Category" class="collapse list-unstyled ">
                     <li><a href="{{ route('admin.addcategory') }}">Add Categories</a></li>
