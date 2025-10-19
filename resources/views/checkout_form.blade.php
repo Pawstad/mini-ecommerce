@@ -24,6 +24,7 @@
     </div>
     <div class="form-group">
       <label for="payment_proof">Unggah Bukti Pembayaran (jpg, png, pdf)</label>
+      <p>Transfer ke bank BRA : 9089812312</p>
       <input type="file" class="form-control-file" name="payment_proof" id="payment_proof" accept="image/*,.pdf" required>
     </div>
 

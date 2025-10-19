@@ -50,16 +50,15 @@
             </div>
             
             <div class="form-group mb-3">
-                <label for="product_category">Product Categories</label>
-                <select name="product_categories[]" id="product_categories" class="form-control" multiple>
-                    @foreach($categories as $category)
-                        <option value="{{$category->id}}">{{$category->category_name}}</option>
-                    @endforeach
-                </select>   
-                <small>Pilih dua kategori: (misal Fiksi dan Baru)</small>
+                <label for="product_category">Product Categories 1</label>
+                <input type="text" id="product_category" name="product_category" class="form-control" placeholder="Enter Product Categories">
             </div>
 
-            
+            <div class="form-group mb-3">
+                <label for="product_category">Product Categories 2</label>
+                <input type="text" id="product_category" name="product_category" class="form-control" placeholder="Enter Product Categories">
+            </div> 
+
             <div class="form-group mb-3">
                 <label for="product_image">Product Image</label>
                 <input type="file" id="product_image" name="product_image" class="form-control">
