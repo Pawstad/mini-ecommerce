@@ -44,8 +44,12 @@
                         @csrf
                         <select name="status" id="">
                             <option value="{{ $order->status }}">{{ $order->status }}</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Pending">Pending</option>
+                            <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
+                            <option value="Diproses">Diproses</option>
+                            <option value="Dikirim">Dikirim</option>
+                            <option value="Selesai">Selesai</option>
+                            <option value="Dibatalkan">Dibatalkan</option>
+
                         </select>
                         <input type="submit" name="submit" value="Update" onclick="return confirm('Change The Status?')">
                     </form>
