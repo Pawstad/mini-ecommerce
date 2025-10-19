@@ -61,22 +61,6 @@
               </tfoot>
             </table>
           </div>
-          
-          <div class="mt-3">
-            <h6>Informasi Pengiriman:</h6>
-            <p><strong>Nama:</strong> {{ $orderGroup->first()->receiver_name }}</p>
-            <p><strong>Alamat:</strong> {{ $orderGroup->first()->receiver_address }}</p>
-            <p><strong>Telepon:</strong> {{ $orderGroup->first()->receiver_phone }}</p>
-            
-            @if($orderGroup->first()->payment_proof)
-              <p>
-                <strong>Bukti Pembayaran:</strong> 
-                <a href="{{ route('order.proof_public', $orderGroup->first()->id) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                  <i class="fa fa-file"></i> Lihat Bukti Pembayaran
-                </a>
-              </p>
-            @endif
-          </div>
         </div>
       </div>
     @endforeach
