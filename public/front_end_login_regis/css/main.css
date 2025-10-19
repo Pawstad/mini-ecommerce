@@ -168,9 +168,26 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  
-   background-image: url("/front_end_login_regis/images/bookstore.jpg");
-   
+  position: relative;
+  background-image: url("/front_end_login_regis/images/bookstore.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container-login100::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/front_end_login_regis/images/bookstore.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.8);
+  -webkit-filter: blur(8px) brightness(0.8);
+  z-index: 0;
 }
 
 .wrap-login100 {
@@ -178,7 +195,6 @@ iframe {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -187,6 +203,10 @@ iframe {
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 177px 130px 33px 95px;
+  
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 /*------------------------------------------------------------------
@@ -495,4 +515,3 @@ iframe {
 input.is-invalid {
     border-color: #e74c3c !important;
 }
-
