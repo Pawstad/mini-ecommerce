@@ -24,7 +24,13 @@
                 <td style="padding: 12px;">{{ $product->id }}</td>
                 <td style="padding: 12px;"><img src="{{ asset('uploads/products/' . $product->product_image) }}" style="width:80px;" alt=""></td>
                 <td style="padding: 12px;">{{ $product->product_name }}</td>
-                <td style="padding: 12px;">{{ $product->category->category_name ?? '-' }}</td>
+                <td style="padding: 12px;">
+                    @if($product->categories->count() > 0)
+                        {{ $product->categories->pluck('category_name')->join(', ') }}
+                    @else
+                        -
+                    @endif
+                </td>
                 <td style="padding: 12px;">{{ $product->product_quantity }}</td>
                 <td style="padding: 12px;">Rp{{ number_format($product->product_price,0,',','.') }}</td>
                 <td>
