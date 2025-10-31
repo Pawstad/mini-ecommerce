@@ -209,6 +209,58 @@ iframe {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* ==== ADDED: back button positioning and styling ==== */
+.back-button-container{
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 6;
+}
+
+.back-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.95);
+  padding: 6px 10px;
+  border-radius: 10px;
+  color: #333333;
+  text-decoration: none;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.back-link i{
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+/* ==== ADDED: smaller hint password style for register form ==== */
+.login100-form .form-text{
+  display: block;
+  font-size: 0.80rem; /* lebih kecil */
+  color: #6c757d;
+  margin-top: 6px;
+  padding-left: 8px; /* align dengan input */
+  text-align: left;
+}
+
+/* Responsive tweaks so back button doesn't collide on small screens */
+@media (max-width: 768px){
+  .back-button-container{
+    top: 12px;
+    left: 12px;
+  }
+  .back-link{
+    font-size: 0.85rem;
+    padding: 5px 8px;
+  }
+  /* pastikan form punya cukup top padding agar tidak tertutup */
+  .wrap-login100{ padding-top: 140px; }
+}
+
+/* ...existing code... */
+
 /*------------------------------------------------------------------
 [  ]*/
 .login100-pic {

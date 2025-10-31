@@ -82,6 +82,11 @@
                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                 @enderror
 
+                <!-- Hint Password -->
+                <small class="form-text text-muted">
+                    Hint: Minimal 8 karakter (uppercase, lowercase, angka).
+                </small>
+
                 <!-- Confirm Password -->
                 <div class="wrap-input100 validate-input">
                     <input 
@@ -124,3 +129,4 @@
     </div>
 @endif
 @endsection
+
